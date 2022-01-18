@@ -19,11 +19,18 @@ namespace HotelWebApplication.Controllers
             return View();
         }
 
-        // GET: CEO/AllInfo
-        public ActionResult AllInfo()
+        // GET: CEO/AllInfo/1
+        public ActionResult AllInfo(int id)
         {
-            ViewBag.AllInfo =CEO.CEOlist[CEO.CEOlist.Count-1];
-            return View();
+            foreach(CEO employee in CEO.CEOlist)
+            {
+                if(employee.Id == id)
+                {
+                    ViewBag.employeeById = employee;
+                    return View();
+                }
+            }
+            return View("NOT FOUND");
         }
 
     
