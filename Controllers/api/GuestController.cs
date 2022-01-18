@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace HotelWebApplication.Controllers.api
@@ -34,11 +35,11 @@ namespace HotelWebApplication.Controllers.api
         }
 
         // GET: api/Guest/5
-        public IHttpActionResult Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
             try
             {
-                guest guestById = DBcontext.Guests.First(item => item.Id==id);
+                guest guestById = await DBcontext.Guests.FindAsync(id);
                 if (guestById != null)
                 {
 
@@ -59,14 +60,14 @@ namespace HotelWebApplication.Controllers.api
         }
 
         // POST: api/Guest
-        public IHttpActionResult Post([FromBody] guest guest)
+        public async Task<IHttpActionResult> Post([FromBody] guest guest)
         {
             try
             {
                 if (guest != null)
                 {
                     DBcontext.Guests.Add(guest);
-                    DBcontext.SaveChanges();
+                    await DBcontext.SaveChangesAsync();
                     return Ok("Added");
                 }
                 return NotFound();
@@ -84,7 +85,7 @@ namespace HotelWebApplication.Controllers.api
         }
 
         // PUT: api/Guest/5
-        public IHttpActionResult Put(int id, [FromBody] guest guestById)
+        public async Task <IHttpActionResult> Put(int id, [FromBody] guest guestById)
         {
             try
             {
@@ -96,7 +97,7 @@ namespace HotelWebApplication.Controllers.api
                     guestToUpdate.Gender=guestById.Gender;
                     guestToUpdate.YearOfBirth = guestById.YearOfBirth;
                     guestToUpdate.CheckOut = guestById.CheckOut;
-                    DBcontext.SaveChanges();
+                    await DBcontext.SaveChangesAsync();
                     return Ok("Updated");
                 }
                 return NotFound();
@@ -114,7 +115,7 @@ namespace HotelWebApplication.Controllers.api
         }
 
         // DELETE: api/Guest/5
-        public IHttpActionResult Delete(int id)
+        public async Task <IHttpActionResult> Delete(int id)
         {
             try
             {
@@ -122,7 +123,7 @@ namespace HotelWebApplication.Controllers.api
                 if (guestToDelete != null)
                 {
                     DBcontext.Guests.Remove(guestToDelete);
-                    DBcontext.SaveChanges();
+                   await DBcontext.SaveChangesAsync();
                     return Ok("DELETED");
                 }
                 return NotFound();
