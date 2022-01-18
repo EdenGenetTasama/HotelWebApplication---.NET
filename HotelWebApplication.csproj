@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\api\GuestController.cs" />
+    <Compile Include="Controllers\api\InvitationController.cs" />
     <Compile Include="Controllers\api\RoomController.cs" />
     <Compile Include="Controllers\CEOController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Models\CEO.cs" />
     <Compile Include="Models\guest.cs" />
     <Compile Include="Models\GuestContext.cs" />
+    <Compile Include="Models\Invait.cs" />
     <Compile Include="Models\Room.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
